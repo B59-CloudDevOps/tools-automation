@@ -5,7 +5,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     parameters {
-        choice(name: 'environment', choices: ['dev', 'prod'], description: 'Select the environment')
         choice(name: 'action', choices: ['apply', 'destroy'], description: 'Select the action')
     }
     stages {
@@ -13,17 +12,17 @@ pipeline {
             steps {
                 sh "terraform --version"
                 sh "rm -rf .terraform*"
-                sh "terraform init  -backend-config=env-${params.environment}/state.tfvars -var-file=env-${params.environment}/main.tfvars"
+                sh "terraform init"
             }
         }
         stage('Terraform Plan') {
             steps {
-                sh "terraform plan -var-file=env-${params.environment}/main.tfvars"
+                sh "terraform plan"
             }
         }
         stage('Terraform Apply') {
             steps {
-                sh "terraform ${params.action} -var-file=env-${params.environment}/main.tfvars -auto-approve"
+                sh "terraform ${params.action} -auto-approve"
             }
         }
     }

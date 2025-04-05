@@ -24,13 +24,14 @@ resource "null_resource" "main" {
   provisioner "remote-exec" {
     inline = [
       "sleep 10",
+      "echo runs playbook"
       #   "ansible-pull -U https://github.com/B59-CloudDevOps/learn-ansible.git -e env=${var.env} -e component=${var.name} expense-pull.yaml"
     ]
   }
 }
 
 resource "aws_security_group" "main" {
-  name        = "${var.name}-${var.env}-sg"
+  name        = "${var.name}-sg"
   description = "Allow All inbound traffic"
 
   ingress {

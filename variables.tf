@@ -8,4 +8,6 @@ variable "tools" {
   }
 }
 
-zone_id = "Z08061862LBZAM174JIHO"
+variable "zone_id" {
+  default = "Z08061862LBZAM174JIHO"
+}

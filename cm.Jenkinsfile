@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Configuration Management In Action') { 
             steps {
-                sh "./setup-tools.sh ${params.tool_name}"
+                sh "bash setup-tools.sh ${params.tool_name}"
             }
         }
 

@@ -6,7 +6,7 @@
     name: prometheus
 
 - name: Download & extract prometheus
-  ansible.builtin.user:
+  ansible.builtin.unarchive:
     src: "{{ url }}"
     dest: /opt
     remote_src: yes

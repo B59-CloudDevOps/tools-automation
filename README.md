@@ -21,3 +21,10 @@ Installing Vault:
         sudo systemctl start vault
         sudo systemctl status vault
     ```
+
+> Prometheus & Grafana
+
+    1) Need a server ( Terraform )
+    2) Installation of Prometheus ( Ansible )
+    3) Installation of Grafana ( Ansible )
+    4) All our servers should have node_exporter installed ( Ansible )

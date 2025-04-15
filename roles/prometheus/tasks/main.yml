@@ -1,3 +1,14 @@
 - name: Configuring hostname
   ansible.builtin.shell: set-hostname prometheus
 
+- name: Create prometheus user
+  ansible.builtin.user:
+    name: prometheus
+
+- name: Download & extract prometheus
+  ansible.builtin.user:
+    src: "{{ url }}"
+    dest: /opt
+    remote_src: yes
+    owner: prometheus
+    group: prometheus

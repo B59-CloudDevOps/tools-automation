@@ -1,0 +1,3 @@
+- name: Configuring hostname
+  ansible.builtin.shell: set-hostname prometheus
+

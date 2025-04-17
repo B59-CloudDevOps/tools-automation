@@ -4,7 +4,7 @@ variable "tools" {
       name           = "vault"
       instance_type  = "t3.micro"
       port_no        = 8200
-      policy_actions = [""]
+      policy_actions = ["ec2:DescribeAvailabilityZones"]
     }
     prometheus = {
       name           = "prometheus"

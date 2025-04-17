@@ -25,3 +25,22 @@ resource "aws_iam_instance_profile" "main" {
   name = "${var.name}-instance-profile"
   role = aws_iam_role.main.name
 }
+
+resource "aws_iam_role_policy" "main" {
+  name = "inline_policy"
+  role = aws_iam_role.main.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:DescribeInstances",
+          "ec2:DescribeAvailabilityZones",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}

@@ -22,6 +22,6 @@ resource "aws_iam_role" "main" {
 }
 
 resource "aws_iam_instance_profile" "main" {
-  name = ""${var.name}-instance-profile""
+  name = "${var.name}-instance-profile"
   role = aws_iam_role.main.name
 }

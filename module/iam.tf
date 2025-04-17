@@ -1,8 +1,6 @@
 resource "aws_iam_role" "main" {
   name = "${var.name}-role"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   assume_role_policy = <<EOF
         {
             "Version": "2012-10-17",

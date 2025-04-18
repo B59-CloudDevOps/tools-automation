@@ -16,7 +16,7 @@ variable "tools" {
       name           = "grafana"
       instance_type  = "t3.micro"
       port_no        = 3000
-      policy_actions = [""]
+      policy_actions = ["ec2:DescribeInstances"]
     }
   }
 }

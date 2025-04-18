@@ -15,9 +15,9 @@
     name: grafana
     state: installed
 
-# - name: Restarting service
-#   ansible.builtin.systemd_service:
-#     name: grafana
-#     state: restarted
-#     enabled: true
-#     daemon_reload: true
+- name: Restarting service
+  ansible.builtin.systemd_service:
+    name: grafana-server
+    state: restarted
+    enabled: true
+    daemon_reload: true

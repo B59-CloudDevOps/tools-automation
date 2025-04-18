@@ -5,7 +5,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     parameters {
-        choice(name: 'tool_name', choices: ['vault' , 'prometheus'], description: 'Select the tool name for cm')
+        choice(name: 'tool_name', choices: ['grafana', 'vault' , 'prometheus'], description: 'Select the tool name for cm')
     }
     stages {
         stage('Configuration Management In Action') { 

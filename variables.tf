@@ -24,7 +24,7 @@ variable "tools" {
       }
       policy_actions = ["ec2:DescribeInstances"]
     }
-    grafana = {
+    elk = {
       name          = "elk"
       instance_type = "r7a.xlarge"
       port_no = {

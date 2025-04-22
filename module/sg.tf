@@ -10,12 +10,23 @@ resource "aws_security_group" "main" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    description = "Allows App Access"
-    from_port   = var.port_no
-    to_port     = var.port_no
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  # ingress {
+  #   description = "Allows App Access"
+  #   from_port   = var.port_no
+  #   to_port     = var.port_no
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
+
+  dynamic "ingress" {
+    for_each = var.port_no
+    content {
+      description = ingress.key
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   }
 
   egress {

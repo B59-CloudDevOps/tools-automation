@@ -28,3 +28,9 @@ Installing Vault:
     2) Installation of Prometheus ( Ansible )
     3) Installation of Grafana ( Ansible )
     4) All our servers should have node_exporter installed ( Ansible )
+
+> Prometheus Query for CPU Average that's Idle & Utilized:
+` avg by(instance_name) (rate(node_cpu_seconds_total{mode="idle", instance_name="mysql-dev"}[5m])) * 100 ` : Idle 
+`100 - (avg by(instance_name) (rate(node_cpu_seconds_total{mode="idle", instance_name="mysql-dev"}[5m])) * 100 )` : Utilized
+
+> Prometheus Query for MEMORY Average that's Idle & Utilized:

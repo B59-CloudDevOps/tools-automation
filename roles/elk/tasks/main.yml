@@ -1,0 +1,32 @@
+- name: Configuring hostname
+  ansible.builtin.shell: set-hostname elk
+
+- name: Copying elastic-search repo
+  ansible.builtin.template:
+    src: elastic.repo
+    dest: /etc/yum.repos.d/elastic.repo
+  
+- name: Installing Tools
+  ansible.builtin.dnf:
+    name: 
+      - elasticsearch
+      - logstash
+      - kibana 
+      - nginx
+    state: present
+
+- name: Copying nginx reverseProxy
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: Starting and enabling elasticsearch
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: restarted
+    enabled: true 
+  loop:
+    - elasticsearch
+    - logstash
+    - kibana
+    - nginx

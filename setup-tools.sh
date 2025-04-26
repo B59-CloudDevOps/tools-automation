@@ -1,1 +1,1 @@
-ansible-playbook -i ${tool_name}.clouding-app.shop, -e ansible_user=ec2-user -e ansible_password=DevOps321 -e tool_name=${tool_name} tools.yml
+ansible-playbook -i ${tool_name}.clouding-app.shop, -e ansible_user=ec2-user -e ansible_password=DevOps321 -e tool_name=${tool_name} -e vault_token=${vault_token} tools.yml

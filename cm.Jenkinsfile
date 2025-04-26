@@ -7,6 +7,9 @@ pipeline {
     parameters {
         choice(name: 'tool_name', choices: ['elk', 'grafana', 'vault' , 'prometheus'], description: 'Select the tool name for cm')
     }
+    environment {
+        vault_token = credentials('vault_token') 
+    }
     stages {
         stage('Configuration Management In Action') { 
             steps {

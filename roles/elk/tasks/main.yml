@@ -1,6 +1,11 @@
 - name: Configuring hostname
   ansible.builtin.shell: set-hostname elk
 
+- name: Installing hvac , a pre-requisite for vault
+  ansible.builtin.pip:
+    name: hvac
+    executable: pip3.11 
+
 - name: Copying elastic-search repo
   ansible.builtin.template:
     src: elastic.repo
@@ -24,11 +29,6 @@
   ansible.builtin.template:
     src: beats.conf
     dest: /etc/logstash/conf.d/beats.conf
-
-- name: Installing hvac , a pre-requisite for vault
-  ansible.builtin.pip:
-    name: hvac
-    executable: pip3.11 
 
 - name: Starting and enabling elasticsearch
   ansible.builtin.systemd:

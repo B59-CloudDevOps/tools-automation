@@ -20,6 +20,11 @@
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
+- name: Copying logstash config
+  ansible.builtin.template:
+    src: beats.conf
+    dest: /etc/logstash/conf.d/beats.conf
+
 - name: Starting and enabling elasticsearch
   ansible.builtin.systemd:
     name: "{{ item }}"

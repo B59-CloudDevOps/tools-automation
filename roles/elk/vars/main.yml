@@ -1,1 +1,1 @@
-secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=expense-dev/data/infra token={{ token }} url=https://vault.clouding-app.shop:8200  validate_certs=False') }}"
+secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=expense-dev/data/infra token={{ vault_token }} url=https://vault.clouding-app.shop:8200  validate_certs=False') }}"

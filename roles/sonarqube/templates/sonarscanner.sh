@@ -13,7 +13,7 @@ if [ "$ELV" == "el7" ]; then
 elif [ "$ELV" == "el9" ]; then
     curl -O https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.1.0.4889-linux-x64.zip
     unzip sonar-scanner-cli-7.1.0.4889-linux-x64.zip
-    mv sonar-scanner-cli-7.1.0.4889-linux-x64 sonar
+    mv sonar-scanner-7.1.0.4889-linux-x64 sonar
 fi
 
 

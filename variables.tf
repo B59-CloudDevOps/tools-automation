@@ -38,7 +38,6 @@ variable "tools" {
       instance_type = "t3.medium"
       port_no = {
         sonarqube = 8081
-        ssh       = 22
       }
       policy_actions = ["ec2:DescribeInstances"]
     }

@@ -20,9 +20,9 @@ resource "aws_instance" "main" {
 
 resource "null_resource" "main" {
   depends_on = [aws_route53_record.main] # This ensure, provisioner will only be exectued post dns_record creation
-  triggers = {
-    timestamp = timestamp() # Forces execution on every apply
-  }
+  # triggers = {
+  #   timestamp = timestamp() # Forces execution on every apply
+  # }
 
   connection {
     type     = "ssh"

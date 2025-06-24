@@ -1,0 +1,4 @@
+# secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=infra-secrets/data/elk token={{vault_token}} url=https://vault.expense.internal:8200 validate_certs=False') }}"
+
+url: "https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.7.0.96327.zip"
+sonaruser: "sonar"

@@ -12,8 +12,8 @@ if [ "$ELV" == "el7" ]; then
     mv sonar-scanner-4.5.0.2216-linux sonar 
 elif [ "$ELV" == "el9" ]; then
     curl -O https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.1.0.4889-linux-x64.zip
-    unzip sonar-scanner-cli-5.0.1.3006-linux.zip
-    mv sonar-scanner-5.0.1.3006-linux sonar
+    unzip sonar-scanner-cli-7.1.0.4889-linux-x64.zip
+    mv sonar-scanner-cli-7.1.0.4889-linux-x64 sonar
 fi
 
 

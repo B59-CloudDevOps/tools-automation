@@ -1,0 +1,85 @@
+- name: Configuring Host name 
+  ansible.builtin.shell: set-hostname sonarqube
+
+- name: Installing java17
+  ansible.builtin.dnf:
+    name: java-17-openjdk 
+    state: installed
+
+- name: Adding sonar user
+  ansible.builtin.user:
+    name: "{{sonaruser}}"
+
+- name: Creates soanr directory
+  ansible.builtin.file:
+    path: /sonar
+    state: directory
+    owner: "{{sonaruser}}"
+    group: "{{sonaruser}}"
+
+- name: Downloading and extracting runner package
+  ansible.builtin.unarchive:
+    src: "{{url}}"
+    dest: /sonar
+    remote_src: yes
+    owner: "{{sonaruser}}"
+    group: "{{sonaruser}}"
+
+- name: Copying Systemd file
+  ansible.builtin.template:
+    src: sonarqube.service
+    dest: /etc/systemd/system/sonarqube.service 
+
+- name: Starting Sonarqube
+  ansible.builtin.systemd_service:
+    name: sonarqube 
+    state: restarted
+    enabled: true
+    daemon-reload: yes
+
+# - name: Configuring Runner 
+#   ansible.builtin.shell: /actions-runner/config.sh remove --url https://github.com/B58-CloudDevOps --token "{{token}}" --unattended;/actions-runner/config.sh --url https://github.com/B58-CloudDevOps --token "{{token}}" --unattended
+#   become_user: "{{defuser}}"
+#   args: 
+#    chdir: /actions-runner 
+
+# - name: Strating Runner 
+#   ansible.builtin.shell: sudo ./svc.sh install ; sudo ./svc.sh start
+#   args: 
+#    chdir: /actions-runner 
+
+# - name: Configuring the repo
+#   ansible.builtin.template:
+#     src: elastic.repo
+#     dest: /etc/yum.repos.d/elastic.repo
+
+# - name: Installing ELK Stack
+#   ansible.builtin.dnf:
+#     name: 
+#       - elasticsearch
+#       - kibana 
+#       - logstash 
+#       - nginx 
+#     state: installed
+
+# - name: Configuring Reverse Proxy For Kibana
+#   ansible.builtin.template:
+#     src: nginx.conf
+#     dest: /etc/nginx/nginx.conf
+
+# - name: Configuring Logstash Config
+#   ansible.builtin.template:
+#     src: logstash.conf
+#     dest: /etc/logstash/conf.d/logstash.conf
+
+# - name: Starting ELK Services
+#   ansible.builtin.systemd_service:
+#     name: "{{ item }}"
+#     state: restarted
+#     enabled: true
+#   loop: 
+#     - elasticsearch
+#     - kibana 
+#     - logstash 
+#     - nginx 
+

@@ -33,6 +33,15 @@ variable "tools" {
       }
       policy_actions = ["ec2:DescribeInstances"]
     }
+    sonarqube = {
+      name          = "sonarqube"
+      instance_type = "t3.medium"
+      port_no = {
+        sonarqube = 8081
+        ssh       = 22
+      }
+      policy_actions = ["ec2:DescribeInstances"]
+    }
   }
 }
 
